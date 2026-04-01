@@ -34,7 +34,7 @@ public class AutoUpdater {
                 String latestVersion = extractJson(response, "tag_name").replace("v", "");
                 String downloadUrl = extractDownloadUrl(response);
 
-                if (!latestVersion.equals(Gonzagamod.version)) {
+                if (!latestVersion.equals(Gonzagamod.getVersion())) {
                     downloadUpdate(downloadUrl);
                 }
 
