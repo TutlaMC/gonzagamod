@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "gonzagamod",
+  "version": "${version}",
+  "name": "gonzagamod",
+  "description": "skibidi",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/gonzagamod/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-datagen": [
+      "net.tutla.gonzagamod.client.GonzagamodDataGenerator"
+    ],
+    "client": [
+      "net.tutla.gonzagamod.client.GonzagamodClient"
+    ],
+    "main": [
+      "net.tutla.gonzagamod.Gonzagamod"
+    ]
+  },
+  "mixins": [
+    "gonzagamod.mixins.json",
+    {
+      "config": "gonzagamod.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
