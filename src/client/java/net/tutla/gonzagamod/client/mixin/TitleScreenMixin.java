@@ -31,7 +31,7 @@ public abstract class TitleScreenMixin extends Screen {
     // Push all normal buttons down to make room
     @ModifyArg(method = "addNormalWidgets", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/ButtonWidget$Builder;dimensions(IIII)Lnet/minecraft/client/gui/widget/ButtonWidget$Builder;", ordinal = 0), index = 1)
     private int pushSingleplayerDown(int y) {
-        return y + 24;
+        return y+24;
     }
 
     @ModifyArg(method = "addNormalWidgets", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/ButtonWidget$Builder;dimensions(IIII)Lnet/minecraft/client/gui/widget/ButtonWidget$Builder;", ordinal = 1), index = 1)
@@ -56,7 +56,7 @@ public abstract class TitleScreenMixin extends Screen {
 
     @Inject(method = "init", at = @At("TAIL"))
     private void onInit(CallbackInfo ci) {
-        int y = this.height / 4 + 48; // same base as TitleScreen, top slot
+        int y = this.height / 4 + 24; // same base as TitleScreen, top slot
 
         this.addDrawableChild(ButtonWidget.builder(
                 Text.literal("Join SMP"),
