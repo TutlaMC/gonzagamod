@@ -1,6 +1,7 @@
 package net.tutla.gonzagamod.client.mixin;
 
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.gui.screen.multiplayer.ConnectScreen;
@@ -8,8 +9,10 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.network.ServerAddress;
 import net.minecraft.client.network.ServerInfo;
 import net.minecraft.text.Text;
+import net.tutla.gonzagamod.client.AutoUpdater;
 import net.tutla.gonzagamod.client.ModChecker;
 import net.tutla.gonzagamod.client.screen.BlacklistScreen;
+import net.tutla.gonzagamod.client.screen.UpdateScreen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -50,6 +53,11 @@ public abstract class TitleScreenMixin extends Screen {
                     ConnectScreen.connect(this, this.client, address, info, false, null);
                 }
         ).dimensions(this.width / 2 - 100, y, 200, 20).build());
+    }
+
+    @Inject(method = "render", at = @At("TAIL"))
+    private void render(DrawContext context, int mouseX, int mouseY, float deltaTicks, CallbackInfo ci){
+        AutoUpdater.showUpdateScreen();
     }
 
 }

@@ -16,9 +16,11 @@ import java.util.Scanner;
 public class AutoUpdater {
     private static final String identifier = "gonzagamod";
     private static final String REPO = "TutlaMC/"+identifier;
+    private static boolean showUpdateScreen = false;
     public static void checkAndUpdate() {
         Thread thread = new Thread(() -> {
             try {
+                System.out.println("Updating.... fr");
                 URL url = new URL("https://api.github.com/repos/" + REPO + "/releases/latest");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Accept", "application/json");
@@ -33,7 +35,6 @@ public class AutoUpdater {
                 String downloadUrl = extractDownloadUrl(response);
 
                 if (!latestVersion.equals(Gonzagamod.version)) {
-                    System.out.println("Update found: " + latestVersion);
                     downloadUpdate(downloadUrl);
                 }
 
@@ -67,8 +68,8 @@ public class AutoUpdater {
         Files.list(modsDir)
                 .filter(p -> p.getFileName().toString().startsWith(identifier))
                 .forEach(p -> {
-                    try { Files.delete(p); }
-                    catch (Exception e) { e.printStackTrace(); }
+                    try { Files.delete(p);  }
+                    catch (Exception e) { System.out.println("failed here lol"); }
                 });
 
         // download new jar
@@ -77,9 +78,15 @@ public class AutoUpdater {
         try (InputStream in = url.openStream()) {
             Files.copy(in, newJar, StandardCopyOption.REPLACE_EXISTING);
         }
-
-        MinecraftClient.getInstance().setScreen(new UpdateScreen());
+        showUpdateScreen = true;
         System.out.println("Update downloaded! Restart to apply.");
 
+    }
+
+    public static void showUpdateScreen(){
+        if(showUpdateScreen){
+            showUpdateScreen=false;
+            MinecraftClient.getInstance().setScreen(new UpdateScreen());
+        }
     }
 }

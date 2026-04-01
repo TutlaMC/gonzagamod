@@ -45,7 +45,6 @@ public class ModChecker {
 
         for (ResourcePackProfile e : MinecraftClient.getInstance().getResourcePackManager().getProfiles()){
             if (isBlacklisted(e.getId())) blackListed.add(e.getId());
-            System.out.println(e.getId());
         }
         return blackListed;
     }
