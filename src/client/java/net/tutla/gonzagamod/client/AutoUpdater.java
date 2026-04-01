@@ -14,7 +14,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.Scanner;
 
 public class AutoUpdater {
-    private static final String identifier = "gonzagamod";
+    private static final String identifier = Gonzagamod.MOD_ID;
     private static final String REPO = "TutlaMC/"+identifier;
     private static boolean showUpdateScreen = false;
     public static void checkAndUpdate() {
@@ -60,6 +60,8 @@ public class AutoUpdater {
     }
 
     private static void downloadUpdate(String downloadUrl) throws Exception {
+        // TODO: Make everything modular & introduce download installer
+
         // find current mod jar
         Path modsDir = FabricLoader.getInstance().getGameDir().resolve("mods");
 
