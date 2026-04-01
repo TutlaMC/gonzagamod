@@ -40,7 +40,7 @@ public abstract class TitleScreenMixin extends Screen {
 
     @Inject(method = "init", at = @At("TAIL"))
     private void tailOnInit(CallbackInfo ci) {
-        int y = this.height / 4 + 48 - 24; // one slot above singleplayer
+        int y = this.height / 4 + 48 - 24;
 
         this.addDrawableChild(ButtonWidget.builder(
                 Text.literal("Join SMP"),
