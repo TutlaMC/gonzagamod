@@ -30,7 +30,6 @@ public class AutoUpdater {
                 String response = scanner.useDelimiter("\\A").next();
                 scanner.close();
 
-                // parse tag_name and assets download url
                 String latestVersion = extractJson(response, "tag_name").replace("v", "");
                 String downloadUrl = extractDownloadUrl(response);
 
