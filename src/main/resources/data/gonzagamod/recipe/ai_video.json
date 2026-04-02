@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#R#",
+    "###"
+  ],
+  "key": {
+    "#": "minecraft:white_wool",
+    "R": "minecraft:redstone"
+  },
+  "result": {
+    "id": "gonzagamod:ai_video",
+    "count": 1
+  }
+}
