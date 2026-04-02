@@ -26,12 +26,8 @@ public class GonzagamodClient implements ClientModInitializer {
             if (shutdownWait <= 0){
                 client.close();
             }
-
-
-
         }));;
     }
-
 
     public static void startDoShutdown() {
         doShutdown = true;

@@ -14,12 +14,10 @@ import java.util.stream.Collectors;
 public class ModChecker {
     // ai generated all the patterns btw
     protected static final List<String> BLACKLISTED_PATTERNS = List.of(
-            // === Xray clients and variants ===
             ".*xray.*",
             ".*x[-_]ray.*",
             ".*xrayclient.*",
 
-            // === Wurst ===
             ".*wurst.*",
             ".*wurstclient.*",
             ".*wurst[-_]client.*",

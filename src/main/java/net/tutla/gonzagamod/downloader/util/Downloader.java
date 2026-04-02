@@ -1,12 +1,14 @@
-package net.tutla.gonzagamod.downloader;
+package net.tutla.gonzagamod.downloader.util;
 
 import net.fabricmc.loader.api.FabricLoader;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 
 public class Downloader {
     private final Path mainDir = FabricLoader.getInstance().getGameDir();
@@ -20,12 +22,17 @@ public class Downloader {
         }
     }
 
-    public void findAndDelete(String findString) throws Exception {
+    public void findAndDelete(String findString) throws IOException {
         Files.list(modsDir)
                 .filter(p -> p.getFileName().toString().startsWith(findString))
                 .forEach(p -> {
                     try { Files.delete(p);  }
                     catch (Exception e) { System.out.println("failed here lol"); }
                 });
+    }
+
+    public boolean isMatchInFolder(String pattern) throws IOException {
+        return Files.list(modsDir)
+                .anyMatch(p -> p.getFileName().toString().matches(pattern));
     }
 }

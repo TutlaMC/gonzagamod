@@ -7,7 +7,7 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.network.ServerAddress;
 import net.minecraft.client.network.ServerInfo;
 import net.minecraft.text.Text;
-import net.tutla.gonzagamod.downloader.AutoUpdater;
+import net.tutla.gonzagamod.downloader.AutoSetup;
 import net.tutla.gonzagamod.client.GonzagamodClient;
 import net.tutla.gonzagamod.client.ModChecker;
 import org.spongepowered.asm.mixin.Mixin;
@@ -62,8 +62,8 @@ public abstract class TitleScreenMixin extends Screen {
                 }
         ).dimensions(this.width / 2 - 100, y, 200, 20).build());
         ModChecker.doCheck(client);
-        if (AutoUpdater.done){
-            AutoUpdater.done = false;
+        if (AutoSetup.done){
+            AutoSetup.done = false;
             GonzagamodClient.showUpdateScreen();
         }
     }

@@ -1,8 +1,7 @@
-package net.tutla.gonzagamod.downloader;
+package net.tutla.gonzagamod.downloader.util;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.util.Scanner;
@@ -27,6 +26,4 @@ public class Fetcher {
         int end = json.indexOf("\"", start);
         return json.substring(start, end);
     }
-
-
 }

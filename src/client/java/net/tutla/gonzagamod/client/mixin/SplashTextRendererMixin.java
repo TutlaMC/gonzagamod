@@ -27,7 +27,10 @@ public class SplashTextRendererMixin {
                 "clifton, dont goon to this",
                 "ehan stop cheating",
                 "darrien hacked me",
-                "who has a gun?"
+                "who has a gun?",
+                "vulkan better",
+                "#bringbackclayton",
+                "screw you big p"
         );
         String chosen = splashes.get(new Random().nextInt(splashes.size()));
         this.text = Text.literal(chosen);
