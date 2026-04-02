@@ -1,6 +1,5 @@
 package net.tutla.gonzagamod.client.mixin;
 
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
@@ -9,13 +8,10 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.network.ServerAddress;
 import net.minecraft.client.network.ServerInfo;
 import net.minecraft.text.Text;
-import net.tutla.gonzagamod.client.AutoUpdater;
+import net.tutla.gonzagamod.AutoUpdater;
+import net.tutla.gonzagamod.client.GonzagamodClient;
 import net.tutla.gonzagamod.client.ModChecker;
-import net.tutla.gonzagamod.client.screen.BlacklistScreen;
-import net.tutla.gonzagamod.client.screen.UpdateScreen;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
@@ -67,11 +63,10 @@ public abstract class TitleScreenMixin extends Screen {
                 }
         ).dimensions(this.width / 2 - 100, y, 200, 20).build());
         ModChecker.doCheck(client);
-    }
-
-    @Inject(method = "render", at = @At("TAIL"))
-    private void render(DrawContext context, int mouseX, int mouseY, float deltaTicks, CallbackInfo ci){
-        AutoUpdater.showUpdateScreen();
+        if (AutoUpdater.done){
+            AutoUpdater.done = false;
+            GonzagamodClient.showUpdateScreen();
+        }
     }
 
 }

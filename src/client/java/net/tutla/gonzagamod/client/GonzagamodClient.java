@@ -3,7 +3,10 @@ package net.tutla.gonzagamod.client;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
+import net.minecraft.client.MinecraftClient;
+import net.tutla.gonzagamod.AutoUpdater;
 import net.tutla.gonzagamod.TutlaState;
+import net.tutla.gonzagamod.client.screen.UpdateScreen;
 
 public class GonzagamodClient implements ClientModInitializer {
     private TutlaState state;
@@ -13,7 +16,6 @@ public class GonzagamodClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        AutoUpdater.checkAndUpdate();
         ClientPlayConnectionEvents.INIT.register(((handler, client) -> {
             ModChecker.doCheck(client);
         }));
@@ -25,11 +27,18 @@ public class GonzagamodClient implements ClientModInitializer {
             if (shutdownWait <= 0){
                 client.close();
             }
+
+
+
         }));;
     }
 
 
     public static void startDoShutdown() {
         doShutdown = true;
+    }
+
+    public static void showUpdateScreen(){
+        MinecraftClient.getInstance().setScreen(new UpdateScreen());
     }
 }

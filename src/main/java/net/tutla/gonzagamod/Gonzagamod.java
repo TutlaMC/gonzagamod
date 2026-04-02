@@ -16,6 +16,7 @@ public class Gonzagamod implements ModInitializer {
     @Override
     public void onInitialize() {
         GonzagaItems.initialize();
+        AutoUpdater.checkAndUpdate();
         System.out.println("erm? yes im the rizzler");
     }
 

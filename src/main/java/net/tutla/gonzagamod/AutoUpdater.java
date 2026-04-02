@@ -1,9 +1,7 @@
-package net.tutla.gonzagamod.client;
+package net.tutla.gonzagamod;
 
+import com.mojang.authlib.minecraft.client.MinecraftClient;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.client.MinecraftClient;
-import net.tutla.gonzagamod.Gonzagamod;
-import net.tutla.gonzagamod.client.screen.UpdateScreen;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -16,7 +14,8 @@ import java.util.Scanner;
 public class AutoUpdater {
     private static final String identifier = Gonzagamod.MOD_ID;
     private static final String REPO = "TutlaMC/"+identifier;
-    private static boolean showUpdateScreen = false;
+    public static volatile boolean done = false;
+    public static volatile String updateContent;
     public static void checkAndUpdate() {
         Thread thread = new Thread(() -> {
             try {
@@ -32,6 +31,8 @@ public class AutoUpdater {
 
                 String latestVersion = extractJson(response, "tag_name").replace("v", "");
                 String downloadUrl = extractDownloadUrl(response);
+
+                updateContent =extractJson(response, "body");
 
                 if (!latestVersion.equals(Gonzagamod.getVersion())) {
                     downloadUpdate(downloadUrl);
@@ -53,10 +54,7 @@ public class AutoUpdater {
     }
 
     private static String extractDownloadUrl(String json) {
-        String search = "\"browser_download_url\":\"";
-        int start = json.indexOf(search) + search.length();
-        int end = json.indexOf("\"", start);
-        return json.substring(start, end);
+        return extractJson(json, "browser_download_url");
     }
 
     private static void downloadUpdate(String downloadUrl) throws Exception {
@@ -79,15 +77,9 @@ public class AutoUpdater {
         try (InputStream in = url.openStream()) {
             Files.copy(in, newJar, StandardCopyOption.REPLACE_EXISTING);
         }
-        showUpdateScreen = true;
         System.out.println("Update downloaded! Restart to apply.");
-
+        done = true;
     }
 
-    public static void showUpdateScreen(){
-        if(showUpdateScreen){
-            showUpdateScreen=false;
-            MinecraftClient.getInstance().setScreen(new UpdateScreen());
-        }
-    }
+
 }
