@@ -66,6 +66,7 @@ public abstract class TitleScreenMixin extends Screen {
                     ConnectScreen.connect(this, this.client, address, info, false, null);
                 }
         ).dimensions(this.width / 2 - 100, y, 200, 20).build());
+        ModChecker.doCheck(client);
     }
 
     @Inject(method = "render", at = @At("TAIL"))

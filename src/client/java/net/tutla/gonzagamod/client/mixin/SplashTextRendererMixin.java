@@ -24,7 +24,10 @@ public class SplashTextRendererMixin {
                 "bros on the amra list",
                 "jax loves shaza",
                 "is samvit studying for NEET?",
-                "clifton, dont goon to this"
+                "clifton, dont goon to this",
+                "ehan stop cheating",
+                "darrien hacked me",
+                "who has a gun?"
         );
         String chosen = splashes.get(new Random().nextInt(splashes.size()));
         this.text = Text.literal(chosen);

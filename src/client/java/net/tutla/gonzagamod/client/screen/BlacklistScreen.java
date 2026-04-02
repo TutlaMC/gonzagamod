@@ -5,6 +5,7 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
+import net.tutla.gonzagamod.client.GonzagamodClient;
 
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class BlacklistScreen extends Screen {
                 })
                 .dimensions(this.width / 2 - 50, this.height - 50, 100, 20)
                 .build());
+        GonzagamodClient.startDoShutdown();
     }
 
     @Override
