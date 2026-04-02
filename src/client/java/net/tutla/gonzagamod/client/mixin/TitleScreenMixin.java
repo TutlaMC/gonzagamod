@@ -1,6 +1,5 @@
 package net.tutla.gonzagamod.client.mixin;
 
-import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.gui.screen.multiplayer.ConnectScreen;
@@ -8,7 +7,7 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.network.ServerAddress;
 import net.minecraft.client.network.ServerInfo;
 import net.minecraft.text.Text;
-import net.tutla.gonzagamod.AutoUpdater;
+import net.tutla.gonzagamod.downloader.AutoUpdater;
 import net.tutla.gonzagamod.client.GonzagamodClient;
 import net.tutla.gonzagamod.client.ModChecker;
 import org.spongepowered.asm.mixin.Mixin;

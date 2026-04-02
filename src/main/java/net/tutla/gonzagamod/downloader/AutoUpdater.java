@@ -1,7 +1,7 @@
-package net.tutla.gonzagamod;
+package net.tutla.gonzagamod.downloader;
 
-import com.mojang.authlib.minecraft.client.MinecraftClient;
 import net.fabricmc.loader.api.FabricLoader;
+import net.tutla.gonzagamod.Gonzagamod;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -58,25 +58,9 @@ public class AutoUpdater {
     }
 
     private static void downloadUpdate(String downloadUrl) throws Exception {
-        // TODO: Make everything modular & introduce download installer
-
-        // find current mod jar
-        Path modsDir = FabricLoader.getInstance().getGameDir().resolve("mods");
-
-        // find and delete old jar
-        Files.list(modsDir)
-                .filter(p -> p.getFileName().toString().startsWith(identifier))
-                .forEach(p -> {
-                    try { Files.delete(p);  }
-                    catch (Exception e) { System.out.println("failed here lol"); }
-                });
-
-        // download new jar
-        Path newJar = modsDir.resolve(identifier + "-latest.jar");
-        URL url = new URL(downloadUrl);
-        try (InputStream in = url.openStream()) {
-            Files.copy(in, newJar, StandardCopyOption.REPLACE_EXISTING);
-        }
+        Downloader downloader = new Downloader();
+        downloader.findAndDelete(identifier);
+        downloader.download(downloadUrl,identifier + "-version.jar");
         System.out.println("Update downloaded! Restart to apply.");
         done = true;
     }

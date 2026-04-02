@@ -3,7 +3,7 @@ package net.tutla.gonzagamod.client.screen;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
-import net.tutla.gonzagamod.AutoUpdater;
+import net.tutla.gonzagamod.downloader.AutoUpdater;
 
 public class UpdateScreen extends Screen {
     public UpdateScreen() {
