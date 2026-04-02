@@ -13,23 +13,9 @@ public class Gonzagamod implements ModInitializer {
     public static final String MOD_ID = "gonzagamod";
     protected static final String version = "1.0.4";
 
-    public static final Item TEST_ITEM = Registry.register(
-            Registries.ITEM,
-            Identifier.of(MOD_ID, "ai_video"),
-            new Item(new Item.Settings()
-                    .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(MOD_ID, "ai_video")))
-            )
-    );
-
     @Override
     public void onInitialize() {
-        /*TEST_ITEM = Registry.register(
-                Registries.ITEM,
-                Identifier.of(MOD_ID, "ai_video"),
-                new Item(new Item.Settings().registryKey(
-                        RegistryKey.of(RegistryKeys.ITEM, Identifier.of(MOD_ID, "ai_video"))
-                ))
-        );*/
+        GonzagaItems.initialize();
         System.out.println("erm? yes im the rizzler");
     }
 
