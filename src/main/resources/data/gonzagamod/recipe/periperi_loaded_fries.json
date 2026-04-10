@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW",
+    "WRW",
+    "WWW"
+  ],
+  "key": {
+    "W": "minecraft:white_wool",
+    "R": "minecraft:redstone"
+  },
+  "result": {
+    "id": "gonzagamod:periperi_loaded_fries",
+    "count": 4
+  }
+}
